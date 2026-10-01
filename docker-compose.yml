@@ -31,7 +31,7 @@ services:
 
   backend:
     build:
-      context: ./backend
+      context: ./src
       dockerfile: Dockerfile
     container_name: ufc_iot_backend
     restart: unless-stopped
@@ -52,7 +52,7 @@ services:
       BASELINE_POWER_KW: 2.5
       DEFAULT_TARIFF_KWH: 0.85
     volumes:
-      - ./backend/app:/app/app
+      - ./src/app:/app/app
 
 volumes:
   postgres_data:
