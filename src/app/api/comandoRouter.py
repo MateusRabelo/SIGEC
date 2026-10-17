@@ -4,6 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.database import get_db
 from app.schema.comandoSchema import ComandoCreate, ComandoResponse
 from app.services.comandoService import ComandoService
+from app.services.mqtt_worker import publish_mqtt_command
 from app.services.salaService import SalaService
 
 router = APIRouter()
@@ -17,7 +18,17 @@ async def create_comando(
     sala = await SalaService.get_by_id(db, comando_in.sala_id)
     if not sala:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Sala não encontrada")
-    return await ComandoService.create(db, comando_in)
+    comando = await ComandoService.create(db, comando_in)
+    await publish_mqtt_command(
+        comando.sala_id,
+        {
+            "id": comando.id,
+            "sala_id": comando.sala_id,
+            "acao": comando.acao,
+            "setpoint_alvo": comando.setpoint_alvo,
+        },
+    )
+    return comando
 
 
 @router.get("/sala/{sala_id}", response_model=list[ComandoResponse])
