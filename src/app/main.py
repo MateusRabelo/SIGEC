@@ -1,12 +1,28 @@
+import asyncio
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 import uvicorn
 
 from app.api.router import router
+from app.services.mqtt_worker import run_mqtt_listener
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    mqtt_task = asyncio.create_task(run_mqtt_listener())
+    yield
+    mqtt_task.cancel()
+    try:
+        await mqtt_task
+    except asyncio.CancelledError:
+        pass
+
 
 app = FastAPI(
     title="SIGEC API",
     description="Sistema Integrado de Gestao de Energia e Climatizacao",
     version="0.1.0",
+    lifespan=lifespan,
 )
 
 app.include_router(router, prefix="/api")
