@@ -28,6 +28,7 @@ wheels/
 .installed.cfg
 *.egg
 /.agents
+/src/.agents
 
 # Node / Frontend
 node_modules/
