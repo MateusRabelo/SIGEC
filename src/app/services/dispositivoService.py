@@ -1,84 +1,62 @@
-from datetime import datetime, timezone
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.dispositivoModel import DispositivoModel
+from app.schema.dispositivoSchema import DispositivoCreate, DispositivoUpdate
 
 
 class DispositivoService:
-
     @staticmethod
-    async def registrar_heartbeat(session: AsyncSession, mac_address: str, sala_id: int | None = None, modelo_chip: str = "ESP32") -> DispositivoModel:
-        """
-        Localiza o dispositivo pelo MAC address e registra o heartbeat.
-        Se ainda não existir no banco, cria um novo dispositivo automaticamente.
-        """
-        
-        stmt = select(DispositivoModel).where(DispositivoModel.mac_address == mac_address)
-
-        result = await session.execute(stmt)
-
-        # verifica se existe
-        dispositivo = result.scalar_one_or_none()
-
-        if not dispositivo:
-            dispositivo = DispositivoModel(
-                mac_address=mac_address,
-                sala_id=sala_id,
-                modelo_chip=modelo_chip,
-                status="online",
-                last_seen=datetime.now(timezone.utc),
-            )
-            session.add(dispositivo)
-        else:
-            dispositivo.registrar_heartbeat()
-
-        await session.commit()
-        await session.refresh(dispositivo)
-        return dispositivo
-
-
-
-    @staticmethod
-    async def get_by_id(session: AsyncSession, dispositivo_id: int) -> DispositivoModel | None:
-        """Busca um dispositivo pelo ID."""
-
-        stmt = select(DispositivoModel).where(DispositivoModel.id == dispositivo_id)
-        result = await session.execute(stmt)
-
-        return result.scalar_one_or_none() #não perm9te ignorar se não for único
-
-
-
-    @staticmethod
-    async def get_by_sala_id(session: AsyncSession, sala_id: int) -> list[DispositivoModel]:
-        """Retorna todos os dispositivos de uma determinada sala."""
-
-        stmt = select(DispositivoModel).where(DispositivoModel.sala_id == sala_id)
-        result = await session.execute(stmt)
-
+    async def get_all(db: AsyncSession, skip: int = 0, limit: int = 100) -> list[DispositivoModel]:
+        result = await db.execute(select(DispositivoModel).offset(skip).limit(limit))
         return list(result.scalars().all())
 
-
+    @staticmethod
+    async def get_by_id(db: AsyncSession, dispositivo_id: int) -> DispositivoModel | None:
+        result = await db.execute(select(DispositivoModel).where(DispositivoModel.id == dispositivo_id))
+        return result.scalar_one_or_none()
 
     @staticmethod
-    async def update_offline_dispositivos(session: AsyncSession, timeout_segundos: int = 60) -> int:
-        """
-        Varre dispositivos que constam como 'online' e marca como 'offline'
-        aqueles cujo last_seen ultrapassou o limite.
-        """
+    async def get_by_mac(db: AsyncSession, mac_address: str) -> DispositivoModel | None:
+        result = await db.execute(select(DispositivoModel).where(DispositivoModel.mac_address == mac_address))
+        return result.scalar_one_or_none()
 
-        stmt = select(DispositivoModel).where(DispositivoModel.status == "online")
-        
-        result = await session.execute(stmt)
-        dispositivos = result.scalars().all()
+    @staticmethod
+    async def get_by_sala(db: AsyncSession, sala_id: int) -> list[DispositivoModel]:
+        result = await db.execute(select(DispositivoModel).where(DispositivoModel.sala_id == sala_id))
+        return list(result.scalars().all())
 
-        modificados = 0
-        for disp in dispositivos:
-            if not disp.isOnline(timeout_segundos=timeout_segundos):
-                modificados += 1
+    @staticmethod
+    async def create(db: AsyncSession, dispositivo_in: DispositivoCreate) -> DispositivoModel:
+        dispositivo = DispositivoModel(**dispositivo_in.model_dump())
+        db.add(dispositivo)
+        await db.commit()
+        await db.refresh(dispositivo)
+        return dispositivo
 
-        if modificados > 0:
-            await session.commit()
+    @staticmethod
+    async def update(
+        db: AsyncSession, dispositivo: DispositivoModel, dispositivo_in: DispositivoUpdate
+    ) -> DispositivoModel:
+        data = dispositivo_in.model_dump(exclude_unset=True)
+        for key, value in data.items():
+            setattr(dispositivo, key, value)
+        await db.commit()
+        await db.refresh(dispositivo)
+        return dispositivo
 
-        return modificados
+    @staticmethod
+    async def heartbeat(db: AsyncSession, mac_address: str) -> DispositivoModel | None:
+        result = await db.execute(select(DispositivoModel).where(DispositivoModel.mac_address == mac_address))
+        dispositivo = result.scalar_one_or_none()
+        if not dispositivo:
+            return None
+        dispositivo.registrar_heartbeat()
+        await db.commit()
+        await db.refresh(dispositivo)
+        return dispositivo
+
+    @staticmethod
+    async def delete(db: AsyncSession, dispositivo: DispositivoModel) -> None:
+        await db.delete(dispositivo)
+        await db.commit()
