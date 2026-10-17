@@ -17,6 +17,7 @@ from app.schema.salaSchema import (
     SalaUpdate,
 )
 from app.schema.telemetriaSchema import (
+    MqttTelemetriaPayload,
     TelemetriaBase,
     TelemetriaCreate,
     TelemetriaResponse,
@@ -35,6 +36,7 @@ __all__ = [
     "TelemetriaBase",
     "TelemetriaCreate",
     "TelemetriaResponse",
+    "MqttTelemetriaPayload",
     "ComandoBase",
     "ComandoCreate",
     "ComandoResponse",
