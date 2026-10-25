@@ -25,3 +25,17 @@ class TelemetriaResponse(TelemetriaBase):
     update_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class MqttTelemetriaPayload(BaseModel):
+    sala_id: int
+    mac_address: str | None = None
+    dispositivo_id: int | None = None
+    co2: float
+    temperatura: float
+    umidade: float | None = None
+    corrente_rms: float
+    potencia_ativa_kw: float
+    setpoint: float
+    economia_ciclo_brl: float | None = None
+    economia_acumulada_brl: float | None = None
