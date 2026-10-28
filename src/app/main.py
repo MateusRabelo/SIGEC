@@ -21,7 +21,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="SIGEC API",
-    description="Sistema Integrado de Gestao de Energia e Climatizacao",
+    description="Sistema Inteligente de Gestão e Eficiência de Climatização",
     version="0.1.0",
     lifespan=lifespan,
 )
