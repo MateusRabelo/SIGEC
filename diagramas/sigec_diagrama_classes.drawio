@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-11-10T20:55:00.000Z" agent="SIGEC Diagram Generator" version="24.0.0" type="device">
+  <diagram id="3._diagrama_de_classes_uml" name="3. Diagrama de Classes UML">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" vertex="1" value="&lt;b style='font-size: 18px;'&gt;SIGEC — Diagrama de Classes UML 2.5 (Modelo de Dados)&lt;/b&gt;&lt;br&gt;&lt;span style='font-size: 12px; color: #555555;'&gt;Entidades Relacionais implementadas no SQLAlchemy / PostgreSQL&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;">
+          <mxGeometry x="260" y="20" width="540" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="sala" parent="1" vertex="1" value="&lt;b&gt;SalaModel&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:9px; color:#555;'&gt;«table: salas»&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #6c8ebf;'&gt;&lt;div style='text-align:left; font-size:10px; padding:3px;'&gt;- id: int [PK]&lt;br&gt;- numero: int&lt;br&gt;- unidade: int&lt;br&gt;- bloco: int&lt;br&gt;- potencial_base_kw: float = 2.5&lt;br&gt;- setpoint_atual: float = 24.0&lt;br&gt;- ativa: bool = True&lt;br&gt;- created_at: DateTime&lt;br&gt;- updated_at: DateTime&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=1.5;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="60" y="110" width="230" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="dispositivo" parent="1" vertex="1" value="&lt;b&gt;DispositivoModel&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:9px; color:#555;'&gt;«table: dispositivos»&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #6c8ebf;'&gt;&lt;div style='text-align:left; font-size:10px; padding:3px;'&gt;- id: int [PK]&lt;br&gt;- sala_id: int [FK -&gt; salas.id]&lt;br&gt;- mac_address: string&lt;br&gt;- modelo_chip: string&lt;br&gt;- status: string = 'offline'&lt;br&gt;- last_seen: DateTime&lt;/div&gt;&lt;hr style='border:0.5px solid #6c8ebf;'&gt;&lt;div style='text-align:left; font-size:10px; padding:3px;'&gt;+ registrar_heartbeat(): void&lt;br&gt;+ isOnline(timeout: int = 60): bool&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=1.5;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="520" y="110" width="250" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="telemetria" parent="1" vertex="1" value="&lt;b&gt;TelemetriaModel&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:9px; color:#555;'&gt;«table: telemetrias»&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #6c8ebf;'&gt;&lt;div style='text-align:left; font-size:10px; padding:3px;'&gt;- id: int [PK]&lt;br&gt;- sala_id: int [FK -&gt; salas.id]&lt;br&gt;- dispositivo_id: int [FK -&gt; dispositivos.id]&lt;br&gt;- co2: float&lt;br&gt;- temperatura: float&lt;br&gt;- umidade: float&lt;br&gt;- corrente_rms: float&lt;br&gt;- potencia_ativa_kw: float&lt;br&gt;- setpoint: float&lt;br&gt;- economia_ciclo_brl: float&lt;br&gt;- economia_acumulada_brl: float&lt;br&gt;- created_at: DateTime&lt;br&gt;- update_at: DateTime&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=1.5;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="520" y="380" width="260" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="comando" parent="1" vertex="1" value="&lt;b&gt;ComandoModel&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:9px; color:#555;'&gt;«table: comandos»&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #6c8ebf;'&gt;&lt;div style='text-align:left; font-size:10px; padding:3px;'&gt;- id: int [PK]&lt;br&gt;- sala_id: int [FK -&gt; salas.id]&lt;br&gt;- acao: string&lt;br&gt;- setpoint_alvo: string&lt;br&gt;- created_at: DateTime&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=1.5;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="60" y="400" width="230" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_sala_disp" parent="1" edge="1" source="sala" target="dispositivo" value="aloca [1..*]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=none;fontSize=10;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_sala_telem" parent="1" edge="1" source="sala" target="telemetria" value="acumula [0..*]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=none;fontSize=10;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_disp_telem" parent="1" edge="1" source="dispositivo" target="telemetria" value="transmite [0..*]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=none;fontSize=10;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_sala_com" parent="1" edge="1" source="sala" target="comando" value="recebe [0..*]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=none;fontSize=10;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-11-10T20:55:00.000Z" agent="SIGEC Diagram Generator" version="24.0.0" type="device">
+  <diagram id="1._hardware_e_conexões" name="1. Hardware e Conexões">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" vertex="1" value="&lt;b style='font-size: 18px;'&gt;SIGEC — Esquema Elétrico e Conexões de Hardware (ESP32)&lt;/b&gt;&lt;br&gt;&lt;span style='font-size: 12px; color: #555555;'&gt;Revisão D: Versão Mínima Essencial com Peças Reais&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;">
+          <mxGeometry x="260" y="20" width="540" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="esp32" parent="1" vertex="1" value="&lt;b&gt;ESP32 DevKit v1&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:10px;'&gt;30 Pinos • Wi-Fi 2.4GHz&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;table style='font-size:10px; width:100%; border-collapse:collapse;'&gt;&lt;tr&gt;&lt;td style='text-align:left; color:#f1c40f;'&gt;• GPIO 34 (ADC1)&lt;/td&gt;&lt;td style='text-align:right; color:#a9dfbf;'&gt;GPIO 22 (SCL) •&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style='text-align:left; color:#e67e22;'&gt;• 3V3 (Saída 3.3V)&lt;/td&gt;&lt;td style='text-align:right; color:#a9dfbf;'&gt;GPIO 21 (SDA) •&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style='text-align:left; color:#bdc3c7;'&gt;• GND (Terra)&lt;/td&gt;&lt;td style='text-align:right; color:#bb8fce;'&gt;GPIO 4 (IR PWM) •&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style='text-align:left; color:#e74c3c;'&gt;• VIN (USB 5V)&lt;/td&gt;&lt;td style='text-align:right; color:#85c1e9;'&gt;GPIO 2 (LED Azul) •&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='text-align:right; color:#f9e79f;'&gt;GPIO 18 (LED Amarelo) •&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2b2b2b;strokeColor=#1a1a1a;strokeWidth=2;fontColor=#ffffff;align=center;verticalAlign=top;spacingTop=10;">
+          <mxGeometry x="440" y="160" width="220" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="sct_container" parent="1" vertex="1" value="&lt;b&gt;Sensor de Corrente AC &amp; Condicionamento&lt;/b&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;">
+          <mxGeometry x="50" y="110" width="300" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="sct_content" parent="sct_container" vertex="1" value="&lt;div style='text-align: left; padding: 6px; font-size: 11px;'&gt;&lt;b&gt;1. Sensor SCT-013-000 (100A / 50mA)&lt;/b&gt;&lt;br&gt;• Alicate não invasivo na fase do AC.&lt;br&gt;• Termina em Plugue Jack P2 3.5mm.&lt;br&gt;&lt;br&gt;&lt;b&gt;2. Resistor de Carga (Burden Rb):&lt;/b&gt;&lt;br&gt;• &lt;b&gt;Rb = 10 Ω a 33 Ω&lt;/b&gt; entre Terminal A e B.&lt;br&gt;&lt;br&gt;&lt;b&gt;3. Divisor de Tensão (Offset VBIAS):&lt;/b&gt;&lt;br&gt;• &lt;b&gt;R1 (10 kΩ)&lt;/b&gt; ligado ao 3.3V.&lt;br&gt;• &lt;b&gt;R2 (10 kΩ)&lt;/b&gt; ligado ao GND.&lt;br&gt;• &lt;b&gt;C1 (10 µF)&lt;/b&gt; estabiliza VBIAS em &lt;b&gt;1,65 V&lt;/b&gt;.&lt;br&gt;&lt;br&gt;&lt;b&gt;4. Saídas para o ESP32:&lt;/b&gt;&lt;br&gt;• Terminal B → Nó VBIAS (1,65V)&lt;br&gt;• Terminal A → &lt;b&gt;GPIO 34 (ADC1)&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;">
+          <mxGeometry y="26" width="300" height="294" as="geometry" />
+        </mxCell>
+        <mxCell id="scd40" parent="1" vertex="1" value="&lt;b&gt;Sensirion SCD40&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:10px;'&gt;Sensor CO₂ • Temperatura • Umidade&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #27ae60;'&gt;&lt;div style='text-align:left; font-size:10px; padding: 4px;'&gt;• &lt;b&gt;VCC:&lt;/b&gt; 3.3V&lt;br&gt;• &lt;b&gt;GND:&lt;/b&gt; GND comum&lt;br&gt;• &lt;b&gt;SDA:&lt;/b&gt; GPIO 21 (I2C Data)&lt;br&gt;• &lt;b&gt;SCL:&lt;/b&gt; GPIO 22 (I2C Clock)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="760" y="110" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="ir_block" parent="1" vertex="1" value="&lt;b&gt;Emissor Infravermelho (IR 940nm)&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:10px;'&gt;Comando Ar-Condicionado (PWM 38 kHz)&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #8e44ad;'&gt;&lt;div style='text-align:left; font-size:10px; padding: 4px;'&gt;• &lt;b&gt;Controle:&lt;/b&gt; GPIO 4&lt;br&gt;• &lt;b&gt;Resistor limitador:&lt;/b&gt; 100 Ω ou 220 Ω&lt;br&gt;• &lt;b&gt;LED IR:&lt;/b&gt; Ânodo (+) no resistor, Cátodo (-) no GND&lt;br&gt;• &lt;i&gt;Sem transistor/MOSFET: acionamento direto&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="760" y="260" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="led_block" parent="1" vertex="1" value="&lt;b&gt;LEDs de Diagnóstico&lt;/b&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #d6b656;'&gt;&lt;div style='text-align:left; font-size:10px; padding: 4px;'&gt;• &lt;b&gt;LED Azul (Wi-Fi / MQTT):&lt;/b&gt; Onboard (GPIO 2 interno)&lt;br&gt;• &lt;b&gt;LED Amarelo (Heartbeat / Sync):&lt;/b&gt; GPIO 18 + R 220 Ω&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="760" y="410" width="230" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sct" parent="1" edge="1" source="sct_container" target="esp32" value="Sinal Analógico&lt;br&gt;(Offset 1.65V)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#f1c40f;strokeWidth=2;fontSize=10;fontColor=#b7950b;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_scd" parent="1" edge="1" source="esp32" target="scd40" value="Barramento I2C&lt;br&gt;(GPIO 21 SDA / GPIO 22 SCL)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#27ae60;strokeWidth=2;fontSize=10;fontColor=#1e8449;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ir" parent="1" edge="1" source="esp32" target="ir_block" value="GPIO 4 (PWM 38kHz)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8e44ad;strokeWidth=2;fontSize=10;fontColor=#6c3483;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_led" parent="1" edge="1" source="esp32" target="led_block" value="GPIO 18 / Onboard GPIO 2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;strokeWidth=2;fontSize=10;fontColor=#b7950b;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="2._arquitetura_do_sistema" name="2. Arquitetura do Sistema">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" vertex="1" value="&lt;b style='font-size: 18px;'&gt;SIGEC — Arquitetura de Software e Fluxo IoT de Ponta a Ponta&lt;/b&gt;&lt;br&gt;&lt;span style='font-size: 12px; color: #555555;'&gt;Camadas de Borda (Edge), Mensageria, Backend Assíncrono, Banco Relacional e Clientes&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;">
+          <mxGeometry x="230" y="20" width="620" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_box" parent="1" vertex="1" value="&lt;b&gt;1. Camada de Borda (ESP32)&lt;/b&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #2980b9;'&gt;&lt;div style='text-align:left; font-size:10px; padding:4px;'&gt;• &lt;b&gt;Sensoriamento:&lt;/b&gt; SCD40 (CO2, Temp, Umid) + SCT-013 (Corrente AC)&lt;br&gt;• &lt;b&gt;Controle Local:&lt;/b&gt; Máquina de estados (faixas de CO2) + histerese 1°C&lt;br&gt;• &lt;b&gt;Atuação:&lt;/b&gt; IRremoteESP8266 (LED IR 940nm a 38 kHz)&lt;br&gt;• &lt;b&gt;Economia:&lt;/b&gt; Integração da potência ativa em R$ por ciclo&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="40" y="160" width="230" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="mqtt_box" parent="1" vertex="1" value="&lt;b&gt;2. Mensageria MQTT&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:10px;'&gt;Eclipse Mosquitto (Porta 1883)&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #8e44ad;'&gt;&lt;div style='text-align:left; font-size:10px; padding:4px;'&gt;• &lt;b&gt;Tópico Telemetria:&lt;/b&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;code&gt;ufc/campus_russas/+/telemetry&lt;/code&gt;&lt;br&gt;• &lt;b&gt;Tópico Comandos:&lt;/b&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;code&gt;ufc/campus_russas/{id}/commands&lt;/code&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="330" y="160" width="210" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="backend_box" parent="1" vertex="1" value="&lt;b&gt;3. Backend Assíncrono (FastAPI)&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:10px;'&gt;Python 3.12 • uv • AsyncIO&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #27ae60;'&gt;&lt;div style='text-align:left; font-size:10px; padding:4px;'&gt;• &lt;b&gt;MQTT Worker (aiomqtt):&lt;/b&gt; Ingestão contínua em background&lt;br&gt;• &lt;b&gt;Services Layer:&lt;/b&gt; Sala, Dispositivo, Telemetria, Comando&lt;br&gt;• &lt;b&gt;WebSocket Manager:&lt;/b&gt; Broadcast tempo real das salas&lt;br&gt;• &lt;b&gt;REST API Endpoints:&lt;/b&gt; /salas, /dispositivos, /telemetrias, /comandos&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="600" y="140" width="250" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="db_box" parent="1" vertex="1" value="&lt;b&gt;4. Banco Relacional&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:10px;'&gt;PostgreSQL 16 • SQLAlchemy Async&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #d35400;'&gt;&lt;div style='text-align:left; font-size:10px; padding:4px;'&gt;• &lt;b&gt;Tabelas:&lt;/b&gt; salas, dispositivos, telemetrias, comandos&lt;br&gt;• &lt;b&gt;Migrations:&lt;/b&gt; Alembic (Single Head estrito)&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=2;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="630" y="400" width="190" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="client_box" parent="1" vertex="1" value="&lt;b&gt;5. Camada de Apresentação&lt;/b&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #f39c12;'&gt;&lt;div style='text-align:left; font-size:10px; padding:4px;'&gt;• &lt;b&gt;Painel Web:&lt;/b&gt; React / Vite + Tailwind + Recharts&lt;br&gt;• &lt;b&gt;App Mobile:&lt;/b&gt; Flutter / React Native&lt;br&gt;• &lt;b&gt;Visualização:&lt;/b&gt; Gráficos ao vivo, cards de R$ economizado, IAQ&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="910" y="160" width="220" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="e_edge_mqtt" parent="1" edge="1" source="edge_box" target="mqtt_box" value="Pub Telemetria (JSON)&lt;br&gt;Sub Comandos" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2980b9;strokeWidth=2;fontSize=9;fontColor=#1b4f72;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mqtt_backend" parent="1" edge="1" source="mqtt_box" target="backend_box" value="Consumo aiomqtt&lt;br&gt;Envio de comandos" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8e44ad;strokeWidth=2;fontSize=9;fontColor=#4a235a;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_backend_db" parent="1" edge="1" source="backend_box" target="db_box" value="Persistência Assíncrona&lt;br&gt;(asyncpg)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d35400;strokeWidth=2;fontSize=9;fontColor=#78281f;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_backend_client" parent="1" edge="1" source="backend_box" target="client_box" value="REST HTTP (JSON)&lt;br&gt;+ WebSocket (Tempo Real)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#27ae60;strokeWidth=2;fontSize=9;fontColor=#145a32;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="3._diagrama_de_classes_uml" name="3. Diagrama de Classes UML">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" vertex="1" value="&lt;b style='font-size: 18px;'&gt;SIGEC — Diagrama de Classes UML 2.5 (Modelo de Dados)&lt;/b&gt;&lt;br&gt;&lt;span style='font-size: 12px; color: #555555;'&gt;Entidades Relacionais implementadas no SQLAlchemy / PostgreSQL&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;">
+          <mxGeometry x="260" y="20" width="540" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="sala" parent="1" vertex="1" value="&lt;b&gt;SalaModel&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:9px; color:#555;'&gt;«table: salas»&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #6c8ebf;'&gt;&lt;div style='text-align:left; font-size:10px; padding:3px;'&gt;- id: int [PK]&lt;br&gt;- numero: int&lt;br&gt;- unidade: int&lt;br&gt;- bloco: int&lt;br&gt;- potencial_base_kw: float = 2.5&lt;br&gt;- setpoint_atual: float = 24.0&lt;br&gt;- ativa: bool = True&lt;br&gt;- created_at: DateTime&lt;br&gt;- updated_at: DateTime&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=1.5;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="60" y="110" width="230" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="dispositivo" parent="1" vertex="1" value="&lt;b&gt;DispositivoModel&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:9px; color:#555;'&gt;«table: dispositivos»&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #6c8ebf;'&gt;&lt;div style='text-align:left; font-size:10px; padding:3px;'&gt;- id: int [PK]&lt;br&gt;- sala_id: int [FK -&gt; salas.id]&lt;br&gt;- mac_address: string&lt;br&gt;- modelo_chip: string&lt;br&gt;- status: string = 'offline'&lt;br&gt;- last_seen: DateTime&lt;/div&gt;&lt;hr style='border:0.5px solid #6c8ebf;'&gt;&lt;div style='text-align:left; font-size:10px; padding:3px;'&gt;+ registrar_heartbeat(): void&lt;br&gt;+ isOnline(timeout: int = 60): bool&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=1.5;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="520" y="110" width="250" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="telemetria" parent="1" vertex="1" value="&lt;b&gt;TelemetriaModel&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:9px; color:#555;'&gt;«table: telemetrias»&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #6c8ebf;'&gt;&lt;div style='text-align:left; font-size:10px; padding:3px;'&gt;- id: int [PK]&lt;br&gt;- sala_id: int [FK -&gt; salas.id]&lt;br&gt;- dispositivo_id: int [FK -&gt; dispositivos.id]&lt;br&gt;- co2: float&lt;br&gt;- temperatura: float&lt;br&gt;- umidade: float&lt;br&gt;- corrente_rms: float&lt;br&gt;- potencia_ativa_kw: float&lt;br&gt;- setpoint: float&lt;br&gt;- economia_ciclo_brl: float&lt;br&gt;- economia_acumulada_brl: float&lt;br&gt;- created_at: DateTime&lt;br&gt;- update_at: DateTime&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=1.5;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="520" y="380" width="260" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="comando" parent="1" vertex="1" value="&lt;b&gt;ComandoModel&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:9px; color:#555;'&gt;«table: comandos»&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #6c8ebf;'&gt;&lt;div style='text-align:left; font-size:10px; padding:3px;'&gt;- id: int [PK]&lt;br&gt;- sala_id: int [FK -&gt; salas.id]&lt;br&gt;- acao: string&lt;br&gt;- setpoint_alvo: string&lt;br&gt;- created_at: DateTime&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=1.5;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="60" y="400" width="230" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_sala_disp" parent="1" edge="1" source="sala" target="dispositivo" value="aloca [1..*]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=none;fontSize=10;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_sala_telem" parent="1" edge="1" source="sala" target="telemetria" value="acumula [0..*]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=none;fontSize=10;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_disp_telem" parent="1" edge="1" source="dispositivo" target="telemetria" value="transmite [0..*]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=none;fontSize=10;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_sala_com" parent="1" edge="1" source="sala" target="comando" value="recebe [0..*]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=1.5;endArrow=none;fontSize=10;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,14 @@
+Componente,Sinal,Pino no ESP32,Tipo da Conexão,Consumo Estimado
+ESP32 (CPU Base),,,Processamento Dual-Core 240MHz,40 mA
+Wifi_ESP32 + MQTT,,,Transmissão RF (2.4 GHz),110 mA (médio) / 240 mA (pico TX)
+SCT-013-000 (Sensor de Corrente),Sinal A,GPIO34,Entrada Analógica (ADC1),0.2 mA (divisor VBIAS)
+,Retorno B,Ponto VBIAS (1.65V),Referência DC,
+Sensirion SCD40 (CO2 / Temp / Umidade),VCC,3.3V,Alimentação 3.3V,17 mA (amostragem) / 205 mA (pico aquecimento)
+,GND,GND,Terra comum,
+,SDA,GPIO21,Comunicação I2C,
+,SCL,GPIO22,Comunicação I2C,
+LED IR 940nm (Emissor Ar-Condicionado),Ânodo (+),GPIO4 (resistor 100R a 220R),Saída digital (PWM 38 kHz),15 mA (pulsado em rajadas)
+,Cátodo (-),GND,Terra,
+LED Azul (Status Wi-Fi/MQTT),Integrado,GPIO2 (onboard),Saída digital interna,3 mA
+LED Amarelo (Heartbeat / Envio de Dados),Ânodo (+),GPIO18 (resistor 220R),Saída digital,8 mA (pulsos de 100 ms)
+,Cátodo (-),GND,Terra,

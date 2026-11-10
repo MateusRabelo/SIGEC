@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-11-10T20:55:00.000Z" agent="SIGEC Diagram Generator" version="24.0.0" type="device">
+  <diagram id="1._hardware_e_conexões" name="1. Hardware e Conexões">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" vertex="1" value="&lt;b style='font-size: 18px;'&gt;SIGEC — Esquema Elétrico e Conexões de Hardware (ESP32)&lt;/b&gt;&lt;br&gt;&lt;span style='font-size: 12px; color: #555555;'&gt;Revisão D: Versão Mínima Essencial com Peças Reais&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;">
+          <mxGeometry x="260" y="20" width="540" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="esp32" parent="1" vertex="1" value="&lt;b&gt;ESP32 DevKit v1&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:10px;'&gt;30 Pinos • Wi-Fi 2.4GHz&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;table style='font-size:10px; width:100%; border-collapse:collapse;'&gt;&lt;tr&gt;&lt;td style='text-align:left; color:#f1c40f;'&gt;• GPIO 34 (ADC1)&lt;/td&gt;&lt;td style='text-align:right; color:#a9dfbf;'&gt;GPIO 22 (SCL) •&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style='text-align:left; color:#e67e22;'&gt;• 3V3 (Saída 3.3V)&lt;/td&gt;&lt;td style='text-align:right; color:#a9dfbf;'&gt;GPIO 21 (SDA) •&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style='text-align:left; color:#bdc3c7;'&gt;• GND (Terra)&lt;/td&gt;&lt;td style='text-align:right; color:#bb8fce;'&gt;GPIO 4 (IR PWM) •&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style='text-align:left; color:#e74c3c;'&gt;• VIN (USB 5V)&lt;/td&gt;&lt;td style='text-align:right; color:#85c1e9;'&gt;GPIO 2 (LED Azul) •&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td style='text-align:right; color:#f9e79f;'&gt;GPIO 18 (LED Amarelo) •&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2b2b2b;strokeColor=#1a1a1a;strokeWidth=2;fontColor=#ffffff;align=center;verticalAlign=top;spacingTop=10;">
+          <mxGeometry x="440" y="160" width="220" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="sct_container" parent="1" vertex="1" value="&lt;b&gt;Sensor de Corrente AC &amp; Condicionamento&lt;/b&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;">
+          <mxGeometry x="50" y="110" width="300" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="sct_content" parent="sct_container" vertex="1" value="&lt;div style='text-align: left; padding: 6px; font-size: 11px;'&gt;&lt;b&gt;1. Sensor SCT-013-000 (100A / 50mA)&lt;/b&gt;&lt;br&gt;• Alicate não invasivo na fase do AC.&lt;br&gt;• Termina em Plugue Jack P2 3.5mm.&lt;br&gt;&lt;br&gt;&lt;b&gt;2. Resistor de Carga (Burden Rb):&lt;/b&gt;&lt;br&gt;• &lt;b&gt;Rb = 10 Ω a 33 Ω&lt;/b&gt; entre Terminal A e B.&lt;br&gt;&lt;br&gt;&lt;b&gt;3. Divisor de Tensão (Offset VBIAS):&lt;/b&gt;&lt;br&gt;• &lt;b&gt;R1 (10 kΩ)&lt;/b&gt; ligado ao 3.3V.&lt;br&gt;• &lt;b&gt;R2 (10 kΩ)&lt;/b&gt; ligado ao GND.&lt;br&gt;• &lt;b&gt;C1 (10 µF)&lt;/b&gt; estabiliza VBIAS em &lt;b&gt;1,65 V&lt;/b&gt;.&lt;br&gt;&lt;br&gt;&lt;b&gt;4. Saídas para o ESP32:&lt;/b&gt;&lt;br&gt;• Terminal B → Nó VBIAS (1,65V)&lt;br&gt;• Terminal A → &lt;b&gt;GPIO 34 (ADC1)&lt;/b&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;">
+          <mxGeometry y="26" width="300" height="294" as="geometry" />
+        </mxCell>
+        <mxCell id="scd40" parent="1" vertex="1" value="&lt;b&gt;Sensirion SCD40&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:10px;'&gt;Sensor CO₂ • Temperatura • Umidade&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #27ae60;'&gt;&lt;div style='text-align:left; font-size:10px; padding: 4px;'&gt;• &lt;b&gt;VCC:&lt;/b&gt; 3.3V&lt;br&gt;• &lt;b&gt;GND:&lt;/b&gt; GND comum&lt;br&gt;• &lt;b&gt;SDA:&lt;/b&gt; GPIO 21 (I2C Data)&lt;br&gt;• &lt;b&gt;SCL:&lt;/b&gt; GPIO 22 (I2C Clock)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="760" y="110" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="ir_block" parent="1" vertex="1" value="&lt;b&gt;Emissor Infravermelho (IR 940nm)&lt;/b&gt;&lt;br&gt;&lt;span style='font-size:10px;'&gt;Comando Ar-Condicionado (PWM 38 kHz)&lt;/span&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #8e44ad;'&gt;&lt;div style='text-align:left; font-size:10px; padding: 4px;'&gt;• &lt;b&gt;Controle:&lt;/b&gt; GPIO 4&lt;br&gt;• &lt;b&gt;Resistor limitador:&lt;/b&gt; 100 Ω ou 220 Ω&lt;br&gt;• &lt;b&gt;LED IR:&lt;/b&gt; Ânodo (+) no resistor, Cátodo (-) no GND&lt;br&gt;• &lt;i&gt;Sem transistor/MOSFET: acionamento direto&lt;/i&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="760" y="260" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="led_block" parent="1" vertex="1" value="&lt;b&gt;LEDs de Diagnóstico&lt;/b&gt;&lt;br&gt;&lt;hr style='border:0.5px solid #d6b656;'&gt;&lt;div style='text-align:left; font-size:10px; padding: 4px;'&gt;• &lt;b&gt;LED Azul (Wi-Fi / MQTT):&lt;/b&gt; Onboard (GPIO 2 interno)&lt;br&gt;• &lt;b&gt;LED Amarelo (Heartbeat / Sync):&lt;/b&gt; GPIO 18 + R 220 Ω&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;align=center;verticalAlign=top;spacingTop=6;">
+          <mxGeometry x="760" y="410" width="230" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sct" parent="1" edge="1" source="sct_container" target="esp32" value="Sinal Analógico&lt;br&gt;(Offset 1.65V)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#f1c40f;strokeWidth=2;fontSize=10;fontColor=#b7950b;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_scd" parent="1" edge="1" source="esp32" target="scd40" value="Barramento I2C&lt;br&gt;(GPIO 21 SDA / GPIO 22 SCL)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#27ae60;strokeWidth=2;fontSize=10;fontColor=#1e8449;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ir" parent="1" edge="1" source="esp32" target="ir_block" value="GPIO 4 (PWM 38kHz)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#8e44ad;strokeWidth=2;fontSize=10;fontColor=#6c3483;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_led" parent="1" edge="1" source="esp32" target="led_block" value="GPIO 18 / Onboard GPIO 2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;strokeWidth=2;fontSize=10;fontColor=#b7950b;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
