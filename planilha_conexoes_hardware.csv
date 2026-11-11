@@ -1,14 +1,27 @@
-Componente,Sinal,Pino no ESP32,Tipo da Conexão,Consumo Estimado
-ESP32 (CPU Base),,,Processamento Dual-Core 240MHz,40 mA
-Wifi_ESP32 + MQTT,,,Transmissão RF (2.4 GHz),110 mA (médio) / 240 mA (pico TX)
-SCT-013-000 (Sensor de Corrente),Sinal A,GPIO34,Entrada Analógica (ADC1),0.2 mA (divisor VBIAS)
-,Retorno B,Ponto VBIAS (1.65V),Referência DC,
-Sensirion SCD40 (CO2 / Temp / Umidade),VCC,3.3V,Alimentação 3.3V,17 mA (amostragem) / 205 mA (pico aquecimento)
-,GND,GND,Terra comum,
-,SDA,GPIO21,Comunicação I2C,
-,SCL,GPIO22,Comunicação I2C,
-LED IR 940nm (Emissor Ar-Condicionado),Ânodo (+),GPIO4 (resistor 100R a 220R),Saída digital (PWM 38 kHz),15 mA (pulsado em rajadas)
-,Cátodo (-),GND,Terra,
-LED Azul (Status Wi-Fi/MQTT),Integrado,GPIO2 (onboard),Saída digital interna,3 mA
-LED Amarelo (Heartbeat / Envio de Dados),Ânodo (+),GPIO18 (resistor 220R),Saída digital,8 mA (pulsos de 100 ms)
-,Cátodo (-),GND,Terra,
+Componente / Subsistema,Pino / Terminal,Conecta Em (Pino ESP32 ou Nó),Tipo de Sinal,Função / Observação,Consumo Estimado
+Alimentação Geral,Conector USB,Porta USB do PC ou Carregador 5V,Alimentação 5V DC,Alimenta o ESP32 e todo o circuito,40 mA (base ESP32)
+Alimentação Regulada,Pino 3V3 (ESP32),Trilho Positivo da Protoboard,Saída 3.3V DC (LDO),Alimenta o SCD40 e o divisor VBIAS,Fornece até 500 mA
+Terra Comum,Pino GND (ESP32),Trilho Negativo da Protoboard,0V (GND Comum),Referência de terra unificada,0 mA
+R1 - Divisor de Tensão (10 kΩ),Terminal 1,Pino 3V3 (ESP32),Alimentação 3.3V,Perna superior do divisor de 1.65V,0.16 mA
+R1 - Divisor de Tensão (10 kΩ),Terminal 2,Nó VBIAS (1.65V),Tensão Contínua DC,Ponto central do divisor de offset,—
+R2 - Divisor de Tensão (10 kΩ),Terminal 1,Nó VBIAS (1.65V),Tensão Contínua DC,Perna inferior do divisor de offset,—
+R2 - Divisor de Tensão (10 kΩ),Terminal 2,Pino GND (ESP32),Terra Comum,Aterra o divisor de offset,—
+C1 - Capacitor Eletrolítico (10 µF),Polo Positivo (+),Nó VBIAS (1.65V),Filtragem DC,Estabiliza o offset de 1.65V sem oscilação,—
+C1 - Capacitor Eletrolítico (10 µF),Polo Negativo (-),Pino GND (ESP32),Terra Comum,Aterra o capacitor de filtro,—
+Rb - Resistor Burden (10 Ω a 33 Ω),Terminais 1 e 2,Entre Terminal A e B do Jack P2,Carga de Corrente,Converte a corrente do SCT em tensão AC,Passivo
+SCT-013 (Sensor de Corrente),Terminal B (Base/Manga),Nó VBIAS (1.65V),Referência DC,Eleva a senoide para oscilar sobre 1.65V,—
+SCT-013 (Sensor de Corrente),Terminal A (Ponta/Tip),Pino GPIO 34 (ESP32),Entrada Analógica (ADC1),Sinal senoidal de corrente amostrado,—
+Sensirion SCD40 (CO2 / Temp / Umid),VCC,Pino 3V3 (ESP32),Alimentação 3.3V,Alimenta o sensor fotoacústico,17 mA (médio) / 205 mA (pico)
+Sensirion SCD40 (CO2 / Temp / Umid),GND,Pino GND (ESP32),Terra Comum,Aterramento do sensor,—
+Sensirion SCD40 (CO2 / Temp / Umid),SDA,Pino GPIO 21 (ESP32),Comunicação I2C,Linha de Dados bidirecional,< 1 mA
+Sensirion SCD40 (CO2 / Temp / Umid),SCL,Pino GPIO 22 (ESP32),Comunicação I2C,Linha de Clock I2C,< 1 mA
+R_IR - Resistor Limitador (100 Ω ou 220 Ω),Terminal 1,Pino GPIO 4 (ESP32),Saída Digital / PWM,Comando modulado em 38 kHz para o split,15 mA (pulsos de 100 ms)
+R_IR - Resistor Limitador (100 Ω ou 220 Ω),Terminal 2,Ânodo (+) do LED IR,Corrente Limitada,Protege o LED IR e o pino GPIO 4,—
+LED IR 940 nm (Emissor),Ânodo (+),Terminal 2 de R_IR,Sinal IR 38 kHz,Diodo emissor infravermelho,—
+LED IR 940 nm (Emissor),Cátodo (-),Pino GND (ESP32),Terra Comum,Fecha o circuito no terra,—
+LED Azul (Status Wi-Fi / MQTT),Integrado na Placa,Pino GPIO 2 (onboard),Saída Digital Interna,Fixo conectado / piscando conectando,3 mA
+R_LED - Resistor Amarelo (220 Ω),Terminal 1,Pino GPIO 18 (ESP32),Saída Digital,Sinal de heartbeat / envio de pacote,8 mA (pulsos de 100 ms)
+R_LED - Resistor Amarelo (220 Ω),Terminal 2,Ânodo (+) do LED Amarelo,Corrente Limitada,Protege o LED Amarelo,—
+LED Amarelo (Heartbeat / Sync),Ânodo (+),Terminal 2 de R_LED,Sinal de Pulso,Pisca a cada 5s no envio da telemetria,—
+LED Amarelo (Heartbeat / Sync),Cátodo (-),Pino GND (ESP32),Terra Comum,Fecha o circuito no terra,—
+Wifi_ESP32 + MQTT,Antena PCB Integrada,Conexão Sem Fio RF,Transmissão Wi-Fi 2.4GHz,Publica telemetria no broker Mosquitto,110 mA (médio) / 240 mA (pico TX)
